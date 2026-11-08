@@ -278,7 +278,10 @@
   function frame() {
     const t = now() - enterAt;
     const d = slides[cur];
-    renderSlide(d, t, step, stepAt);
+    // stepAt 에는 단계를 누른 시각(입장 기준)이 들어 있다. renderSlide 는 단계 시작 뒤 지난 초를 받으므로 바꿔 넘긴다.
+    // FINAL(뒤로 들어와 이미 끝난 단계)과 -1e9(아직 누르지 않은 단계)는 그대로 둔다.
+    const st = stepAt.map((s, k) => (k === 0 || s >= FINAL || s <= -1e8) ? s : t - s);
+    renderSlide(d, t, step, st);
     // 전환: 들어오는 쪽은 짧게 떠오르고, 나가는 쪽은 진행 방향으로 밀리며 사라진다
     const tp = now() - prevAt;
     if (prev >= 0 && prev !== cur) {
@@ -400,7 +403,8 @@
     cur = i; const d = slides[i];
     const n = stp == null ? (t >= FINAL - 1 ? (d.steps || 0) : 0) : stp;
     slides.forEach((sd, k) => { sd.el.classList.toggle('on', k === i); sd.el.classList.remove('off'); css(sd.el, { opacity: '', transform: '', clipPath: '' }); });
-    const st = [0]; for (let k = 1; k <= (d.steps || 0); k++) st[k] = k <= n ? (t >= FINAL - 1 ? FINAL : Math.max(0, t - (n - k + 1) * stepEvery)) : -1e9;
+    // k번째 단계를 입장 k×stepEvery 초 뒤에 누른 것으로 보고, 단계 시작 뒤 지난 초를 넘긴다(음수 = 아직 시작 전)
+    const st = [0]; for (let k = 1; k <= (d.steps || 0); k++) st[k] = k <= n ? (t >= FINAL - 1 ? FINAL : t - k * stepEvery) : -1e9;
     renderSlide(d, t, n, st);
     updateChrome();
     return { id: d.id, steps: d.steps || 0, title: d.title };

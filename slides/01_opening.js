@@ -130,9 +130,10 @@
         return;
       }
       this.qs.forEach((e, i) => {
-        const tin = i === 0 ? S.at(0) - 0.25 : S.at(i);
+        // 이전 질문이 0.3초 안에 빠진 뒤(0.22초부터) 새 질문이 들어온다. 같은 자리에 두 질문이 겹쳐 보이지 않게 한다.
+        const tin = i === 0 ? S.at(0) - 0.25 : S.at(i) - 0.22;
         const tout = i < 2 ? S.at(i + 1) : -1e9;
-        const pin = prog(tin, 0, 0.7, ease.snap), pout = prog(tout, 0, 0.45, ease.exit);
+        const pin = prog(tin, 0, 0.7, ease.snap), pout = prog(tout, 0, 0.3, ease.outCubic);
         css(e, { opacity: clamp(pin * 1.5) * (1 - pout), transform: `translate3d(${(1 - pin) * 160 - pout * 220}px,0,0)`, filter: pin < 1 ? `blur(${(1 - pin) * 10}px)` : 'none' });
       });
       this.nums.forEach((n, i) => {
