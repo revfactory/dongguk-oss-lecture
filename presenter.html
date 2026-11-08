@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>발표자 창</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root { --mint: #4BE3A6; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0A1020; color: #E6EAF5; font-family: "Pretendard", sans-serif; height: 100vh; display: grid; grid-template-rows: auto 1fr auto; padding: 24px 32px; gap: 18px; }
+  header { display: flex; align-items: baseline; gap: 24px; }
+  #num { font-family: "JetBrains Mono", monospace; font-size: 42px; font-weight: 700; color: var(--mint); }
+  #title { font-size: 36px; font-weight: 800; letter-spacing: -.02em; }
+  #step { font-size: 20px; color: #9AA6C6; }
+  #clocks { margin-left: auto; text-align: right; font-family: "JetBrains Mono", monospace; }
+  #elapsed { font-size: 48px; font-weight: 700; }
+  #now { font-size: 20px; color: #9AA6C6; }
+  #notes { font-size: 30px; line-height: 1.6; background: #121A33; border-radius: 16px; padding: 24px 28px; overflow: auto; white-space: pre-wrap; }
+  footer { display: flex; align-items: center; gap: 16px; font-size: 22px; color: #9AA6C6; }
+  #next b { color: #E6EAF5; }
+  button { font: 700 20px "Pretendard", sans-serif; padding: 12px 22px; border-radius: 10px; border: 0; background: #1E2A4D; color: #fff; cursor: pointer; }
+  button:hover { background: #2A3A66; }
+  .sp { margin-left: auto; display: flex; gap: 10px; }
+  #wait { color: #9AA6C6; font-size: 22px; }
+</style>
+</head>
+<body>
+<header>
+  <div id="num">—</div>
+  <div><div id="title">발표 창과 연결하는 중</div><div id="step"></div></div>
+  <div id="clocks"><div id="elapsed">00:00</div><div id="now"></div></div>
+</header>
+<div id="notes"><span id="wait">발표 창(index.html)에서 P 를 누르면 이 창이 열립니다. 이 창에서도 ← → 로 넘길 수 있습니다.</span></div>
+<footer>
+  <div id="next"></div>
+  <div class="sp"><button id="reset">시간 초기화</button><button id="prev">← 이전</button><button id="nextb">다음 →</button></div>
+</footer>
+<script>
+  const bc = new BroadcastChannel('deck-sync');
+  const $ = id => document.getElementById(id);
+  let start = Date.now();
+  bc.onmessage = m => {
+    const d = m.data; if (d.type !== 'state') return;
+    $('num').textContent = `${d.i + 1} / ${d.n}`;
+    $('title').textContent = d.title || '';
+    $('step').textContent = d.steps ? `단계 ${d.step} / ${d.steps}` : '';
+    $('notes').textContent = d.notes || '(메모 없음)';
+    $('next').innerHTML = d.next ? `다음 → <b>${d.next}</b>` : '마지막 장';
+  };
+  const send = cmd => bc.postMessage({ type: 'cmd', cmd });
+  $('prev').onclick = () => send('back'); $('nextb').onclick = () => send('next');
+  $('reset').onclick = () => { start = Date.now(); };
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); send('next'); }
+    if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); send('back'); }
+  });
+  setInterval(() => {
+    const s = Math.floor((Date.now() - start) / 1000);
+    $('elapsed').textContent = `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+    $('now').textContent = new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+  }, 500);
+  send('hello');
+</script>
+</body>
+</html>

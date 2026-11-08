@@ -1,0 +1,13 @@
+import { createRequire } from 'module';
+const require = createRequire(process.env.HOME + '/.claude/skills/showreel/scripts/package.json');
+const { chromium } = require('playwright-core');
+const b = await chromium.launch({ channel: 'chrome', headless: true });
+const p = await b.newPage({ viewport: { width: 1600, height: 900 } });
+const errs = []; p.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
+await p.goto('file://' + process.argv[2] + '/index.html#2');
+await p.waitForTimeout(2500);
+const r = await p.evaluate(() => ({ pret: document.fonts.check('800 40px Pretendard'), mono: document.fonts.check('500 20px "JetBrains Mono"'), loaded: [...document.fonts].filter(f => f.status === 'loaded').map(f => f.family + ' ' + f.weight), n: DECK.slides.length }));
+console.log(JSON.stringify(r)); console.log(errs.slice(0, 5).join('\n'));
+await p.keyboard.press('ArrowRight'); await p.waitForTimeout(1200);
+await p.screenshot({ path: process.argv[3] });
+await b.close();
