@@ -6,7 +6,7 @@
   /* 1. 표지 — 제목 줄이 Diff 의 추가 줄처럼 들어온다 */
   slide({
     id: 'cover', title: '표지', theme: 'paper', noChrome: true,
-    notes: '동국대학교 공개SW프로젝트 교과목 기업전문가 특강.',
+    notes: 'GitHub 협업과 AI 에이전트로 시작하는 오픈소스.',
     build(el, A) {
       this.img = U.img(el, 'img/cover_hero.jpg', { x: 560, y: 300, w: 1440, h: 810, mask: 'radial-gradient(ellipse 62% 70% at 62% 52%, #000 55%, transparent 80%)' });
       A(this.img, 'zoom', 0.35, { dur: 1.3, from: 1.08 });
@@ -25,10 +25,6 @@
         css(t, { fontSize: L.size + 'px', fontWeight: 880, whiteSpace: 'nowrap' });
         A(t, 'chars', 0.3 + i * 0.32, { each: 0.03, dur: 0.55 });
       });
-      const info = U.box(el, 120, 610, 760);
-      h('div', 'h4', info, '동국대학교 공개SW프로젝트');
-      const l2 = h('div', 'h4', info, '기업전문가 특강'); css(l2, { color: 'var(--ink2)', fontWeight: 600 });
-      A(info, 'up', 1.15, { dur: 0.7 });
       const who = U.box(el, 120, 868, 760);
       who.innerHTML = '<div style="font-size:46px;font-weight:850;letter-spacing:-.03em">황민호</div><div style="font-size:30px;font-weight:550;color:var(--ink2);margin-top:6px">Kakao AI Studio · FDE</div>';
       A(who, 'up', 1.35, { dur: 0.7 });
