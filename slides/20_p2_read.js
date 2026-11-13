@@ -3,7 +3,7 @@
 (function () {
   const { slide, css, h, s, prog, ease, lerp, clamp, count } = DECK;
   const U = UI;
-  const CH = '2 기존 프로젝트 읽기', K = 'PART 2 · 기존 프로젝트의 이슈 읽기';
+  const CH = '기존 프로젝트 읽기', K = 'PART 2 · 기존 프로젝트의 이슈 읽기';
   const BLUE = '#2F6BFF', GREEN = '#12B07A', RED = '#EF4B4B', AMBER = '#F5A524';
 
   const st = document.createElement('style');

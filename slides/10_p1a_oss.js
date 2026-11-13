@@ -2,7 +2,7 @@
 (function () {
   const { slide, css, h, s, prog, ease, lerp, clamp, kf, count, noise } = DECK;
   const U = UI;
-  const CH = '1A 오픈소스와 저장소';
+  const CH = '오픈소스와 저장소';
 
   /* 코드처럼 보이는 색 막대 줄 */
   function codeBars(parent, x, y, rows, o = {}) {

@@ -4,7 +4,7 @@
 (function () {
   const { slide, css, h, s, prog, ease, lerp, clamp, kf, count, noise } = DECK;
   const U = UI;
-  const PART = 'p3', CHAP = '3B 하네스와 기여 절차';
+  const PART = 'p3', CHAP = '하네스와 기여 절차';
   const VIO = '#7C5CFF', VIO_L = '#B3A2FF';
 
   /* ---------- 이 파일 전용 스타일 ---------- */

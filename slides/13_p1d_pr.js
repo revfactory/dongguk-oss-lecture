@@ -3,7 +3,7 @@
 (function () {
   const { slide, css, h, s, prog, ease, lerp, clamp, kf, count, noise } = DECK;
   const U = UI;
-  const CH = '1D Pull Request·리뷰·CI';
+  const CH = 'Pull Request·리뷰·CI';
 
   /* ---------- 이 장에서만 쓰는 스타일 ---------- */
   const st = document.createElement('style');
@@ -76,7 +76,7 @@
     id: 'p1d-pr-meaning', part: 'p1', chap: CH, title: 'Pull Request의 의미', theme: 'ink', cls: 'dots',
     notes: 'PR은 변경을 합치자는 제안입니다. 오른쪽 카드처럼 설명, Diff, 검사 결과가 한곳에 모이고, 검토한 사람이 반영 여부를 정합니다. "PR = 코드 업로드"가 아니라는 점을 강조합니다.',
     build(el, A) {
-      const T = U.title(el, 'Chapter 1D · Pull Request·리뷰·CI', 'Pull Request의 의미', { cls: 'h1' });
+      const T = U.title(el, 'Pull Request·리뷰·CI', 'Pull Request의 의미', { cls: 'h1' });
       A(T.k, 'right', 0); A(T.t, 'chars', 0.1, { each: 0.03 });
       const big = U.text(el, '', 'PR은 변경을<br><span class="hl">합치자는 제안</span>입니다', 120, 340, 860);
       css(big, { fontSize: '84px', fontWeight: 860, letterSpacing: '-.04em', lineHeight: 1.16, color: '#fff' });

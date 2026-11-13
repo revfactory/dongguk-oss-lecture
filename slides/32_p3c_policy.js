@@ -2,7 +2,7 @@
 (function () {
   const { slide, css, h, s, prog, ease, lerp, clamp, kf, count, rand } = DECK;
   const U = UI;
-  const CH = '3C AI 기여 정책과 근거';
+  const CH = 'AI 기여 정책과 근거';
   const RED = '#D23A2E';
 
   // 신문 머리줄: 위 굵은 줄 + 얇은 줄 + 작은 머리말

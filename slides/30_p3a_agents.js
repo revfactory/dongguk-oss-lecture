@@ -3,7 +3,7 @@
 (function () {
   const { slide, css, h, s, prog, ease, lerp, clamp, kf, count, noise } = DECK;
   const U = UI;
-  const CH = '3A GitHub의 AI 에이전트';
+  const CH = 'GitHub의 AI 에이전트';
   const KK = 'GitHub의 AI 에이전트';
   const MINT = '#4BE3A6', VIO = '#B3A2FF', AMB = '#F5A524', BLU = '#7FA4FF', RED = '#FF8A8A';
   const AG = { copilot: '#4BE3A6', claude: '#F0A15A', codex: '#7FA4FF' };

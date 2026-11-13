@@ -2,7 +2,7 @@
 (function () {
   const { slide, css, h, s, prog, ease, lerp, clamp, kf, noise } = DECK;
   const U = UI;
-  const CH = '1C Issue';
+  const CH = 'Issue';
 
   /* 이 장에서만 쓰는 스타일 */
   const st = document.createElement('style');
@@ -40,7 +40,7 @@
     id: 'p1c-open', part: 'p1', chap: CH, title: 'Issue는 문제와 제안의 기록', theme: 'ink', cls: 'dots',
     notes: '버그(빨강)·제안(파랑)·진행 상태(초록)가 모두 Issue에 남는다. 코드를 바꾸는 제안은 Issue가 아니라 PR에서 한다는 점을 먼저 짚는다.',
     build(el, A) {
-      const T = U.title(el, 'Chapter 1C · Issue', '<span class="hl">Issue</span>는<br>문제와 제안의 기록', { y: 130, w: 900 });
+      const T = U.title(el, 'Issue', '<span class="hl">Issue</span>는<br>문제와 제안의 기록', { y: 130, w: 900 });
       A(T.k, 'right', 0); A(T.t, 'chars', 0.1, { each: 0.035 });
       const cards = [
         ['bug', 'var(--red)', '빈 입력에서 오류가 납니다', ['bug']],
@@ -83,7 +83,7 @@
     id: 'p1c-bug-report', part: 'p1', chap: CH, title: '좋은 버그 리포트의 조건', theme: 'white',
     notes: '오른쪽 양식이 제목 → 환경 → 재현 순서로 채워진다. 마지막 두 줄에서 "확인한 사실"과 "추측"을 나눠 적는 습관을 강조.',
     build(el, A) {
-      const T = U.title(el, '1C · Issue', '좋은 버그 리포트의<br>조건', { w: 760 });
+      const T = U.title(el, 'Issue', '좋은 버그 리포트의<br>조건', { w: 760 });
       A(T.k, 'right', 0); A(T.t, 'chars', 0.1, { each: 0.03 });
       const L = [
         ['문제가 드러나는 제목을 적습니다', 'var(--green)'],
@@ -135,7 +135,7 @@
     id: 'p1c-minimal', part: 'p1', chap: CH, title: '재현 절차와 최소 예제', theme: 'white',
     notes: '프로젝트 전체에서 오류와 관계있는 파일만 남겨 최소 예제를 만든다. 남긴 것만으로 누구나 같은 오류를 볼 수 있어야 한다. 15개·3개는 도식의 타일 수다.',
     build(el, A) {
-      const T = U.title(el, '1C · Issue', '재현 절차와 최소 예제');
+      const T = U.title(el, 'Issue', '재현 절차와 최소 예제');
       A(T.k, 'right', 0); A(T.t, 'chars', 0.1, { each: 0.03 });
       const icons = ['file', 'doc', 'code', 'folder', 'gear', 'doc', 'file', 'code', 'package', 'file', 'globe', 'term', 'doc', 'gear', 'file'];
       const keep = { 2: 0, 7: 1, 11: 2 };
@@ -194,7 +194,7 @@
     id: 'p1c-search', part: 'p1', chap: CH, title: '새 이슈를 만들기 전 검색', theme: 'white',
     notes: '검색어가 입력되면 관계없는 이슈가 빠지고 열린 이슈 1건, 닫힌 이슈 2건이 남는다. 닫힌 이슈에서는 해결한 PR과 버전을, 열린 같은 이슈에는 댓글로 정보를 보탠다.',
     build(el, A) {
-      const T = U.title(el, '1C · Issue', '새 이슈를 만들기 전 <span class="hl">검색</span>');
+      const T = U.title(el, 'Issue', '새 이슈를 만들기 전 <span class="hl">검색</span>');
       A(T.k, 'right', 0); A(T.t, 'chars', 0.1, { each: 0.03 });
       const bar = U.box(el, 120, 292, 1680, 96);
       css(bar, { background: '#fff', borderRadius: '48px', boxShadow: '0 0 0 3px var(--ink), 0 18px 36px -24px rgba(15,27,61,.4)', display: 'flex', alignItems: 'center', gap: '22px', padding: '0 40px' });
@@ -253,7 +253,7 @@
     id: 'p1c-template-form', part: 'p1', chap: CH, title: 'Issue Template과 Issue Form', theme: 'white', cls: 'dots',
     notes: 'Template(.md)은 자유롭게 적되 형식을 안내하고, Form(.yml)은 칸마다 입력을 받으며 필수 항목을 비우면 제출되지 않는다. 왼쪽 제목들이 오른쪽 입력 칸으로 옮겨 가는 것을 보여 준다.',
     build(el, A) {
-      const T = U.title(el, '1C · Issue', 'Issue Template과 Issue Form');
+      const T = U.title(el, 'Issue', 'Issue Template과 Issue Form');
       A(T.k, 'right', 0); A(T.t, 'chars', 0.1, { each: 0.025 });
       const L = U.win(el, { x: 120, y: 284, w: 720, h: 500, title: 'bug_report.md' });
       const R = U.win(el, { x: 1080, y: 284, w: 720, h: 500, title: 'bug_report.yml → 입력 폼' });
@@ -320,7 +320,7 @@
     id: 'p1c-labels', part: 'p1', chap: CH, title: 'Label이 알려주는 정보', theme: 'white',
     notes: '라벨 세 개만 알아도 이슈 목록을 읽을 수 있다. good first issue는 첫 기여에 맞게 범위를 좁혀 둔 이슈라는 표시.',
     build(el, A) {
-      const T = U.title(el, '1C · Issue', 'Label이 <span class="hb">알려주는 정보</span>');
+      const T = U.title(el, 'Issue', 'Label이 <span class="hb">알려주는 정보</span>');
       A(T.k, 'right', 0); A(T.t, 'chars', 0.1, { each: 0.03 });
       const R = [
         ['bug', 'bug', '예상과 다른 동작'],
@@ -348,7 +348,7 @@
     id: 'p1c-gfi', part: 'p1', chap: CH, title: 'good first issue를 고를 때', theme: 'white', cls: 'dots',
     notes: '가운데 이슈 하나에서 세 가지를 확인한다: 범위와 완료 조건, 내 컴퓨터에서 실행 환경을 준비할 수 있는지, 이미 진행 중인 PR이 있는지.',
     build(el, A) {
-      const T = U.title(el, '1C · Issue', '<span class="hl">good first issue</span>를 고를 때');
+      const T = U.title(el, 'Issue', '<span class="hl">good first issue</span>를 고를 때');
       A(T.k, 'right', 0); A(T.t, 'chars', 0.1, { each: 0.025 });
       const svg = s('svg', { width: 1920, height: 1080, viewBox: '0 0 1920 1080', style: 'position:absolute;left:0;top:0;overflow:visible' }, el);
       const C = [960, 560];
@@ -413,7 +413,7 @@
     id: 'p1c-assignee', part: 'p1', chap: CH, title: 'Assignee와 작업 의사 확인', theme: 'white',
     notes: '이슈 오른쪽 사이드바의 Assignees와 최근 댓글부터 본다. 담당자가 있으면 작업 의사를 댓글로 묻고, 프로젝트가 정한 참여 방식(예: 먼저 댓글로 요청)을 따른다.',
     build(el, A) {
-      const T = U.title(el, '1C · Issue', 'Assignee와 작업 의사 확인');
+      const T = U.title(el, 'Issue', 'Assignee와 작업 의사 확인');
       A(T.k, 'right', 0); A(T.t, 'chars', 0.1, { each: 0.03 });
       const W = U.win(el, { x: 120, y: 292, w: 720, h: 660, title: 'Issue #41 · 사이드바' });
       A(W.el, 'right', 0.25, { d: 100, dur: 0.8 });
@@ -458,7 +458,7 @@
     id: 'p1c-comment', part: 'p1', chap: CH, title: 'Issue 댓글로 협의하는 방법', theme: 'white',
     notes: '오른쪽은 같은 이슈에 남기는 댓글 세 개의 예. 확인한 결과 → 구체적인 질문 → 제안할 범위와 이유 순서로 쓰면 유지보수자가 바로 답할 수 있다.',
     build(el, A) {
-      const T = U.title(el, '1C · Issue', 'Issue 댓글로<br>협의하는 방법', { w: 760 });
+      const T = U.title(el, 'Issue', 'Issue 댓글로<br>협의하는 방법', { w: 760 });
       A(T.k, 'right', 0); A(T.t, 'chars', 0.1, { each: 0.035 });
       const G = [
         ['var(--green)', '확인한 결과를 먼저 적습니다', 'main 브랜치에서 빈 문자열로 재현했습니다. 공백만 있는 입력도 같은 오류가 납니다.'],
@@ -503,7 +503,7 @@
     id: 'p1c-projects', part: 'p1', chap: CH, title: 'Projects와 Milestone', theme: 'white',
     notes: 'Projects 보드에서 카드가 할 일 → 진행 중 → 검토 중으로 옮겨 간다. Milestone은 v1.3에 들어갈 이슈와 PR을 묶어 진행률을 보여 준다.',
     build(el, A) {
-      const T = U.title(el, '1C · Issue', 'Projects와 Milestone');
+      const T = U.title(el, 'Issue', 'Projects와 Milestone');
       A(T.k, 'right', 0); A(T.t, 'chars', 0.1, { each: 0.03 });
       const S = [
         ['var(--green)', 'Projects는 작업 상태를 모아 봅니다'],
@@ -581,7 +581,7 @@
     id: 'p1c-done', part: 'p1', chap: CH, title: '완료 조건을 적는 방법', theme: 'white', cls: 'dots',
     notes: '완료 조건은 "언제 끝났다고 할지"를 미리 정하는 문장이다. 정상 입력과 빈 입력의 기대 결과, 확인할 명령까지 적어 두면 리뷰와 테스트가 같은 기준을 쓴다.',
     build(el, A) {
-      const T = U.title(el, '1C · Issue', '완료 조건을 적는 방법');
+      const T = U.title(el, 'Issue', '완료 조건을 적는 방법');
       A(T.k, 'right', 0); A(T.t, 'chars', 0.1, { each: 0.03 });
       const rows = [
         ['변경 후 동작을<br>구체적으로 정합니다', 'var(--green)'],

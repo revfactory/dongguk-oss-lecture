@@ -2,7 +2,7 @@
 (function () {
   const { slide, css, h, s, prog, ease, lerp, clamp, kf, count, noise } = DECK;
   const U = UI;
-  const CH = '1B Git 기본';
+  const CH = 'Git 기본';
   const C = { main: '#9DB0E0', mint: '#4BE3A6', blue: '#7FA4FF', vio: '#B3A2FF', amb: '#F5C26B', red: '#FF8A8A', bg: '#0F1B3D', card: '#18264D' };
 
   /* 전체 화면 SVG 한 장 */

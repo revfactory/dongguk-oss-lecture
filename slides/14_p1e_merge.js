@@ -3,7 +3,7 @@
 (function () {
   const { slide, css, h, s, prog, ease, lerp, clamp } = DECK;
   const U = UI;
-  const CH = '1E Merge와 저장소 규칙', K = '1E · Merge와 저장소 규칙';
+  const CH = 'Merge와 저장소 규칙', K = 'Merge와 저장소 규칙';
   const BLUE = '#2F6BFF', GREEN = '#12B07A', VIOLET = '#7C5CFF';
 
   /* 이 파일 전용 스타일 */
