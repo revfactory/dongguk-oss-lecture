@@ -26,7 +26,7 @@
         A(t, 'chars', 0.3 + i * 0.32, { each: 0.03, dur: 0.55 });
       });
       const who = U.box(el, 120, 868, 760);
-      who.innerHTML = '<div style="font-size:46px;font-weight:850;letter-spacing:-.03em">황민호</div><div style="font-size:30px;font-weight:550;color:var(--ink2);margin-top:6px">Kakao AI Studio · FDE</div>';
+      who.innerHTML = '<div style="font-size:46px;font-weight:850;letter-spacing:-.03em">황민호</div>';
       A(who, 'up', 1.35, { dur: 0.7 });
     },
     render(t) { css(this.img, { translate: `0 ${Math.sin(t * 0.8) * 6}px` }); },
@@ -37,15 +37,12 @@
     id: 'speaker', title: '강사 소개', theme: 'paper',
     notes: '경력은 커밋 그래프로 표시. 별 수는 2026.11.08 GitHub API 기준 9,337.',
     build(el, A) {
-      const k = U.text(el, 'k', '오늘의 강사', 120, 92); A(k, 'right', 0);
       const nm = U.text(el, '', '황민호', 120, 140);
       css(nm, { fontSize: '170px', fontWeight: 900, letterSpacing: '-.05em', lineHeight: 1 });
       A(nm, 'chars', 0.1, { each: 0.07, dur: 0.6 });
       const id = U.text(el, 'mono', 'robin.hwang', 660, 226); css(id, { fontSize: '36px', color: 'var(--ink2)' }); A(id, 'right', 0.45);
-      const role = U.text(el, 'h4', 'Kakao AI Studio · FDE 수석', 120, 340); A(role, 'up', 0.5);
-      const role2 = U.text(el, 'b3', 'Forward Deployed Engineer', 120, 396); A(role2, 'up', 0.58);
-      const tag = U.text(el, 'b1', 'AI가 일할 환경을 설계하는 사람', 120, 468); css(tag, { fontWeight: 700 }); A(tag, 'up', 0.66);
-      const q = U.box(el, 120, 560, 760);
+      const tag = U.text(el, 'b1', 'AI가 일할 환경을 설계하는 사람', 120, 340); css(tag, { fontWeight: 700 }); A(tag, 'up', 0.66);
+      const q = U.box(el, 120, 430, 760);
       q.innerHTML = '<div style="font-family:var(--serif);font-weight:700;font-size:48px;line-height:1.3;letter-spacing:-.02em">“프롬프트가 아니라,<br>시스템을 만듭니다.”</div>';
       css(q, { borderLeft: '8px solid var(--green)', paddingLeft: '34px' });
       A(q, 'wipe', 0.85, { dur: 0.7 });
