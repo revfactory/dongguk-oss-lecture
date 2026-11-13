@@ -623,8 +623,8 @@
   /* ───────── 쉬는 시간 ───────── */
   slide({
     id: 'p1c-break', part: 'p1', chap: '쉬는 시간', title: '쉬는 시간 (10분)', theme: 'paper',
-    notes: '10분 휴식. 15:00에 Pull Request부터 다시 시작. 카운트다운은 이 화면에 들어온 순간부터 줄어든다.',
-    build(el, A) { this.b = UI.breakCover(el, A, { resume: '15:00', next: 'Pull Request부터 이어서' }); },
+    notes: '10분 휴식. Pull Request부터 다시 시작. 카운트다운은 이 화면에 들어온 순간부터 줄어든다.',
+    build(el, A) { this.b = UI.breakCover(el, A, { resume: '10분 뒤', next: 'Pull Request부터 이어서' }); },
     render(t, S) { this.b.update(t, S); },
   });
 })();

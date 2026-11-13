@@ -37,7 +37,7 @@
     id: 'p2-cover', part: 'p2', title: 'PART 2 · 기존 프로젝트의 이슈 읽기', theme: 'blue', noChrome: true,
     notes: '이제 직접 만든 저장소가 아니라 이미 운영 중인 프로젝트에 들어가는 방법입니다. 고르기 → 읽기 → 찾기 → 재현하기 순서로 갑니다.',
     build(el, A) {
-      U.partCover(el, A, { n: '2', label: 'PART 2', title: '기존 프로젝트의<br>이슈 읽기', chapters: ['프로젝트 고르기', 'README와 폴더 구조', '이슈 검색', '실패 재현'], time: '15:35 – 15:55', color: '#2F6BFF', img: 'img/part2_issues_cut.png', imgBox: { x: 125, y: 7, w: 1632, h: 919 } });
+      U.partCover(el, A, { n: '2', label: 'PART 2', title: '기존 프로젝트의<br>이슈 읽기', chapters: ['프로젝트 고르기', 'README와 폴더 구조', '이슈 검색', '실패 재현'], color: '#2F6BFF', img: 'img/part2_issues_cut.png', imgBox: { x: 125, y: 7, w: 1632, h: 919 } });
     },
   });
 
@@ -402,8 +402,8 @@
   /* 쉬는 시간 */
   slide({
     id: 'p2-break', part: 'p2', chap: '쉬는 시간', title: '쉬는 시간', theme: 'paper',
-    notes: '10분 휴식. 16:05에 PART 3(AI Agent)로 다시 시작합니다. 휴식 중 First Contributions 저장소를 열어 두게 안내해도 좋습니다.',
-    build(el, A) { this.b = U.breakCover(el, A, { resume: '16:05', next: 'PART 3 · AI Agent로 수정하고 검증하기' }); },
+    notes: '10분 휴식 뒤 PART 3(AI Agent)로 다시 시작합니다. 휴식 중 First Contributions 저장소를 열어 두게 안내해도 좋습니다.',
+    build(el, A) { this.b = U.breakCover(el, A, { resume: '10분 뒤', next: 'PART 3 · AI Agent로 수정하고 검증하기' }); },
     render(t, S) { this.b.update(t, S); },
   });
 })();

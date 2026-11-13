@@ -55,9 +55,9 @@
   /* ───────── PART 3 표지 ───────── */
   slide({
     id: 'p3a-cover', part: 'p3', title: 'PART 3 · AI Agent로 수정하고 검증하기', theme: 'ink', noChrome: true,
-    notes: 'Part 3 시작(16:05). 앞에서 익힌 Issue·PR·리뷰 절차를 AI 에이전트와 함께 진행하는 방법, 에이전트에게 줄 지침과 검증 명령, 프로젝트별 AI 기여 정책과 근거 자료를 차례로 봅니다.',
+    notes: 'Part 3 시작. 앞에서 익힌 Issue·PR·리뷰 절차를 AI 에이전트와 함께 진행하는 방법, 에이전트에게 줄 지침과 검증 명령, 프로젝트별 AI 기여 정책과 근거 자료를 차례로 봅니다.',
     build(el, A) {
-      U.partCover(el, A, { n: '3', label: 'PART 3', title: 'AI Agent로<br>수정하고 검증하기', chapters: ['GitHub의 AI 에이전트', '하네스와 기여 절차', 'AI 기여 정책과 근거'], time: '16:05 – 16:50', color: '#6A4DF0', img: 'img/part3_agent_cut.png' });
+      U.partCover(el, A, { n: '3', label: 'PART 3', title: 'AI Agent로<br>수정하고 검증하기', chapters: ['GitHub의 AI 에이전트', '하네스와 기여 절차', 'AI 기여 정책과 근거'], color: '#6A4DF0', img: 'img/part3_agent_cut.png' });
     },
   });
 

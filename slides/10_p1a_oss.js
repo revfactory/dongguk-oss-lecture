@@ -20,7 +20,7 @@
     id: 'p1a-cover', part: 'p1', title: 'PART 1 · GitHub의 기본 협업 방식', theme: 'green', noChrome: true,
     notes: 'Part 1은 두 번에 나눠 진행. 전반(오픈소스·Git·Issue) 뒤 10분 휴식, 후반(PR·리뷰·CI·Merge).',
     build(el, A) {
-      U.partCover(el, A, { n: '1', label: 'PART 1', title: 'GitHub의<br>기본 협업 방식', chapters: ['오픈소스와 저장소', 'Git 기본', 'Issue', 'PR·리뷰·CI', 'Merge와 저장소 규칙'], time: '14:08 – 15:35', color: '#12B07A', img: 'img/part1_collab_cut.png' });
+      U.partCover(el, A, { n: '1', label: 'PART 1', title: 'GitHub의<br>기본 협업 방식', chapters: ['오픈소스와 저장소', 'Git 기본', 'Issue', 'PR·리뷰·CI', 'Merge와 저장소 규칙'], color: '#12B07A', img: 'img/part1_collab_cut.png' });
     },
   });
 

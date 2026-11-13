@@ -6,7 +6,7 @@
   /* 1. 표지 — 제목 줄이 Diff 의 추가 줄처럼 들어온다 */
   slide({
     id: 'cover', title: '표지', theme: 'paper', noChrome: true,
-    notes: '동국대학교 공개SW프로젝트 교과목 기업전문가 특강. 2026년 11월 13일(금) 14:00~17:00.',
+    notes: '동국대학교 공개SW프로젝트 교과목 기업전문가 특강.',
     build(el, A) {
       this.img = U.img(el, 'img/cover_hero.jpg', { x: 560, y: 300, w: 1440, h: 810, mask: 'radial-gradient(ellipse 62% 70% at 62% 52%, #000 55%, transparent 80%)' });
       A(this.img, 'zoom', 0.35, { dur: 1.3, from: 1.08 });
@@ -28,8 +28,6 @@
       const info = U.box(el, 120, 610, 760);
       h('div', 'h4', info, '동국대학교 공개SW프로젝트');
       const l2 = h('div', 'h4', info, '기업전문가 특강'); css(l2, { color: 'var(--ink2)', fontWeight: 600 });
-      const d = h('div', 'mono', info, '2026. 11. 13. (금) 14:00 – 17:00');
-      css(d, { marginTop: '22px', fontSize: '30px', fontWeight: 500, color: 'var(--ink2)' });
       A(info, 'up', 1.15, { dur: 0.7 });
       const who = U.box(el, 120, 868, 760);
       who.innerHTML = '<div style="font-size:46px;font-weight:850;letter-spacing:-.03em">황민호</div><div style="font-size:30px;font-weight:550;color:var(--ink2);margin-top:6px">Kakao AI Studio · FDE</div>';
@@ -174,10 +172,10 @@
 
   /* 5. 시간표 */
   slide({
-    id: 'timetable', title: '오늘의 시간표', theme: 'ink', cls: 'dots',
-    notes: '14:00~17:00. 휴식 두 번(각 10분). 시간은 진행 상황에 맞춰 조정.',
+    id: 'timetable', title: '오늘의 진행 순서', theme: 'ink', cls: 'dots',
+    notes: '휴식 두 번(각 10분). 진행 상황에 맞춰 조정.',
     build(el, A) {
-      const T = U.title(el, '14:00 – 17:00', '오늘의 시간표');
+      const T = U.title(el, '진행 순서', '오늘의 진행 순서');
       A(T.k, 'right', 0); A(T.t, 'chars', 0.08, { each: 0.04 });
       const t0 = 14 * 60, t1 = 17 * 60, X0 = 120, X1 = 1800;
       const X = m => X0 + (X1 - X0) * (m - t0) / (t1 - t0);
@@ -194,10 +192,7 @@
       // 시간 눈금
       for (let m = 0; m <= 180; m += 30) {
         const x = X(t0 + m);
-        const tk = U.text(el, 'mono', `${Math.floor((t0 + m) / 60)}:${String((t0 + m) % 60).padStart(2, '0')}`, x - 40, 360, 80);
-        css(tk, { fontSize: '24px', color: '#8F9ABB', textAlign: 'center' });
-        A(tk, 'fade', 0.3 + m / 600);
-        const ln = U.box(el, x - 1, 405, 2, 470); css(ln, { background: 'rgba(255,255,255,.1)' });
+                const ln = U.box(el, x - 1, 405, 2, 470); css(ln, { background: 'rgba(255,255,255,.1)' });
         A(ln, 'grow', 0.3 + m / 600, { axis: 'y', origin: '50% 0%' });
       }
       blocks.forEach((b, i) => {
@@ -210,15 +205,14 @@
         if (big) {
           const l = U.text(bx, '', b[2], 26, 24, w - 40); css(l, { fontSize: w > 300 ? '34px' : '28px', fontWeight: 850, color: '#fff', whiteSpace: 'nowrap' });
           const l2 = U.text(bx, '', b[5], 26, 76, w - 40); css(l2, { fontSize: '24px', fontWeight: 600, color: 'rgba(255,255,255,.85)', lineHeight: 1.35 });
-          const tm = U.text(bx, 'mono', `${Math.floor((t0 + b[0]) / 60)}:${String((t0 + b[0]) % 60).padStart(2, '0')}`, 26, hh - 54); css(tm, { fontSize: '24px', color: 'rgba(255,255,255,.8)' });
-          A([l, l2, tm], 'up', 0.8 + i * 0.1, { d: 20, each: 0.05 });
+                    A([l, l2], 'up', 0.8 + i * 0.1, { d: 20, each: 0.05 });
         } else {
           const l = U.text(el, '', b[2], x - 40, y + hh + 16, w + 80); css(l, { fontSize: '24px', fontWeight: 750, color: '#AEB8D3', textAlign: 'center', whiteSpace: 'nowrap' });
           const ic = U.icon(b[2] === '휴식' ? 'coffee' : b[2] === '오프닝' ? 'play' : 'chat', 36, b[3] === '#3A4766' ? '#AEB8D3' : 'var(--navy)'); U.place(ic, (w - 8) / 2 - 18, 42); bx.appendChild(ic);
           A(l, 'fade', 0.9 + i * 0.1);
         }
       });
-      const note = U.text(el, 'b3', '시간은 진행 상황에 따라 조금씩 달라질 수 있습니다', 120, 920); css(note, { color: '#8F9ABB' }); A(note, 'fade', 1.6);
+      const note = U.text(el, 'b3', '진행 상황에 따라 조금씩 달라질 수 있습니다', 120, 920); css(note, { color: '#8F9ABB' }); A(note, 'fade', 1.6);
     },
   });
 })();

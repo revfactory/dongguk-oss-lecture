@@ -377,7 +377,7 @@
 
 
   /* ---------- Part 표지(세 Part 공통) ---------- */
-  /* o: { n: '1', label: 'PART 1', title, chapters: ['1A …'], time: '14:08 – 15:35', color, img: 'img/part1_collab_cut.png' } */
+  /* o: { n: '1', label: 'PART 1', title, chapters: ['1A …'], color, img: 'img/part1_collab_cut.png' } */
   function partCover(el, A, o) {
     css(el, { background: o.color });
     const circ = box(el, 820, -40, 1160, 1160); css(circ, { borderRadius: '50%', background: 'rgba(255,255,255,.96)' });
