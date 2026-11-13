@@ -506,32 +506,42 @@
   /* p.57 DCO와 CLA 확인 — 좌우 비교 + Sign-off 와 Commit 서명의 차이 */
   slide({
     id: 'p1e-dco-cla', part: 'p1', chap: CH, title: 'DCO와 CLA 확인', theme: 'paper',
-    notes: 'DCO 는 Commit 마다 Signed-off-by 줄로 "이 기여를 제출할 권리가 있다"는 것 등을 확인합니다. CLA 는 프로젝트마다 다른 기여 계약입니다. git commit -s(소문자)는 Sign-off 줄을 넣고, -S(대문자)는 Commit 에 암호 서명을 합니다. 둘은 다릅니다. 이름·주소는 예시입니다.',
+    notes: 'DCO(Developer Certificate of Origin)는 Commit마다 Signed-off-by 줄을 붙여 "이 기여를 낼 권리가 있다"고 선언하는 방식이고, Linux 커널이 씁니다. CLA(Contributor License Agreement)는 기여물의 사용 허락을 프로젝트나 재단과 맺는 계약으로, 첫 PR에서 봇 링크로 한 번 서명합니다. 조건은 프로젝트마다 다르니 CONTRIBUTING.md와 PR 검사 목록에서 확인합니다. git commit -s(소문자)는 Sign-off 줄을 넣고, -S(대문자)는 Commit 에 암호 서명을 합니다. 둘은 다릅니다. 이름·주소는 예시입니다.',
     build(el, A) {
       ttl(el, A, 'DCO와 CLA 확인');
-      const L = U.card(el, { x: 120, y: 280, w: 800, h: 420, pad: 40 });
-      const R = U.card(el, { x: 1000, y: 280, w: 800, h: 420, pad: 40 });
+      const L = U.card(el, { x: 120, y: 250, w: 800, h: 520, pad: 40 });
+      const R = U.card(el, { x: 1000, y: 250, w: 800, h: 520, pad: 40 });
       [L, R].forEach((c, i) => A(c, 'up', 0.25 + i * 0.15));
-      const hd = (c, name, col) => { const t = h('div', 'mono', c, name); css(t, { fontSize: '56px', fontWeight: 700, color: col }); return t; };
-      hd(L, 'DCO', VIOLET); hd(R, 'CLA', BLUE);
-      const lt = h('div', 'b1', L, 'DCO는 기여 권한 등을 확인합니다'); css(lt, { fontSize: '36px', fontWeight: 700, marginTop: '10px' });
-      const rt = h('div', 'b1', R, 'CLA는 프로젝트별 기여 계약입니다'); css(rt, { fontSize: '36px', fontWeight: 700, marginTop: '10px' });
-      const lc = h('div', '', L); css(lc, { marginTop: '28px', background: '#0E1530', borderRadius: '16px', padding: '22px 26px', fontFamily: 'var(--mono)', fontSize: '26px', color: '#DCE3F5', lineHeight: 1.6 });
-      lc.innerHTML = 'docs: fix setup<br><br><span style="color:#B3A2FF">Signed-off-by: Kim Dongguk</span><br><span style="color:#B3A2FF">&nbsp;&nbsp;&lt;dongguk@example.com&gt;</span>';
-      A(lc, 'wipe', 0.8, { dur: 0.5 });
-      const rc = h('div', '', R); css(rc, { marginTop: '28px' });
-      ['license/cla', 'build', 'test'].forEach((c, i) => {
-        const r = h('div', '', rc); css(r, { display: 'flex', alignItems: 'center', gap: '18px', height: '60px', borderTop: i ? '1.5px solid #ECEEF4' : 'none', fontFamily: 'var(--mono)', fontSize: '30px', fontWeight: 600 });
-        const okk = U.status(r, 'ok', 40); h('span', '', r, c);
-        A(okk, 'stamp', 1.0 + i * 0.15, { dur: 0.35 });
+      const spec = [
+        [L, 'DCO', VIOLET, '#EFEAFF', 'Developer Certificate of Origin', '예: Linux 커널',
+          [['선언', '이 기여를 낼 권리가 있음을<br>Commit마다 선언'],
+           ['방법', '<span class="mono" style="font-weight:700">git commit -s</span>로<br><span class="mono" style="font-size:25px;color:#6A4DF0">Signed-off-by: 이름 &lt;이메일&gt;</span> 줄 추가'],
+           ['확인', '이 줄이 없는 Commit이 있으면<br>DCO 검사가 실패']]],
+        [R, 'CLA', BLUE, '#E6EEFF', 'Contributor License Agreement', '예: Apache · Google',
+          [['계약', '기여물의 사용 허락을<br>프로젝트와 맺는 계약'],
+           ['방법', '첫 PR에서 봇이 안내하는 링크로<br>한 번 서명(개인 또는 회사)'],
+           ['확인', '서명 전에는 <span class="mono" style="font-weight:700">license/cla</span> 검사가<br>대기·실패']]],
+      ];
+      spec.forEach(([c, name, col, tint, full, eg, rows], ci) => {
+        const top = h('div', '', c); css(top, { display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' });
+        const t = h('div', 'mono', top, name); css(t, { fontSize: '56px', fontWeight: 700, color: col });
+        const e = h('div', '', top, eg); css(e, { fontSize: '24px', fontWeight: 650, color: 'var(--ink2)' });
+        const f = h('div', '', c, full); css(f, { fontSize: '26px', fontWeight: 650, color: 'var(--ink2)', marginTop: '2px' });
+        const rc = h('div', '', c); css(rc, { marginTop: '20px' });
+        rows.forEach((r, i) => {
+          const row = h('div', '', rc); css(row, { display: 'flex', alignItems: 'center', gap: '22px', minHeight: '104px', borderTop: '1.5px solid #ECEEF4' });
+          const lb = h('div', '', row, r[0]); css(lb, { flex: '0 0 84px', textAlign: 'center', padding: '8px 0', borderRadius: '12px', background: tint, color: col, fontSize: '26px', fontWeight: 800 });
+          const tx = h('div', '', row, r[1]); css(tx, { fontSize: '30px', fontWeight: 650, lineHeight: 1.38 });
+          A(row, 'up', 0.8 + ci * 0.1 + i * 0.18, { dur: 0.45 });
+        });
       });
       // 아래 띠
-      const band = U.box(el, 120, 740, 1680, 200);
+      const band = U.box(el, 120, 800, 1680, 160);
       css(band, { background: 'var(--ink)', borderRadius: '26px', color: '#fff' });
       A(band, 'up', 1.4);
-      const b1 = U.text(band, '', '요구 여부와 실제 조건을 읽습니다', 48, 40, 640); css(b1, { fontSize: '36px', fontWeight: 750 });
-      const b2 = U.text(band, '', 'Sign-off와 Commit 서명은 다릅니다', 48, 104, 640); css(b2, { fontSize: '36px', fontWeight: 750, color: '#B3A2FF' });
-      const cmp = U.box(band, 760, 36, 880, 130); css(cmp, { display: 'flex', alignItems: 'center', gap: '26px' });
+      const b1 = U.text(band, '', '요구 여부와 실제 조건을 읽습니다', 48, 26, 640); css(b1, { fontSize: '36px', fontWeight: 750 });
+      const b2 = U.text(band, '', 'Sign-off와 Commit 서명은 다릅니다', 48, 88, 640); css(b2, { fontSize: '36px', fontWeight: 750, color: '#B3A2FF' });
+      const cmp = U.box(band, 760, 14, 880, 130); css(cmp, { display: 'flex', alignItems: 'center', gap: '26px' });
       const c1 = h('div', '', cmp, '<div class="mono" style="font-size:40px;font-weight:700">git commit <span style="color:#B3A2FF">-s</span></div><div style="font-size:26px;color:#AEB8D3;margin-top:6px;font-weight:600">Signed-off-by 줄 추가</div>');
       const ne = U.icon('neq', 64, 'var(--red)', 2.6); cmp.appendChild(ne);
       const c2 = h('div', '', cmp, '<div class="mono" style="font-size:40px;font-weight:700">git commit <span style="color:#7FA4FF">-S</span></div><div style="font-size:26px;color:#AEB8D3;margin-top:6px;font-weight:600">Commit에 암호 서명</div>');
